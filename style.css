@@ -1,0 +1,63 @@
+body {
+    width: 40%;
+    height: auto;
+    background-color: antiquewhite;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#tableauCDA {
+    background-color: azure;
+    border: 2px solid #000;
+    border-radius: 25px;
+    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+}
+
+#maTable {
+    margin-left: 50px;
+    width: 85%;
+    height: auto;
+    line-height: 1.5;
+}
+
+th {
+    text-align: left;
+    border-bottom: 1px solid black;
+    background-color: antiquewhite;
+    display: flexbox;
+    border: solid 1 black;
+    border-radius: 2px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.animation-inverser {
+    transition: all 0.5s ease;
+    animation-name: inverser;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes inverser {
+    0% {
+        background-color: white;
+        color: black;
+    }
+
+    50% {
+        background-color: yellow;
+        color: red;
+    }
+
+    100% {
+        background-color: white;
+        color: black;
+    }
+}
+
+#supprimer2 {
+    margin-left: 420px;
+}

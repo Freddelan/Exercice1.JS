@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="classeCDA"></div>
+    <h1>Liste des personnes de la classe CDA</h1>
+    <div id="tableauCDA">
+        <table id="maTable">
+            <thead>
+                <tr>
+                    <th class="listeNoms">
+                        Nom
+                    </th>
+
+                    <th>
+                        Sexe
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody id="tableauCDA">
+            </tbody>
+        </table>
+        <button id="supprimer2">Supprimer</button>
+    </div>
+    <br>
+    <br>
+    <input type="text" id="inputColonne1" placeholder="Colonne 1">
+    <input type="text" id="inputColonne2" placeholder="Colonne 2">
+    <button onclick="ajouterLigne()">Ajouter une ligne</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
