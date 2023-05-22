@@ -34,30 +34,26 @@ h1 {
     text-align: center;
 }
 
-.animation-inverser {
-    transition: all 0.5s ease;
-    animation-name: inverser;
-    animation-duration: 1s;
-    animation-fill-mode: both;
+#btnSupprimerSelection {
+    margin-top: 20px;
+    margin-left: 10px;
+    border: solid black 1px;
+    border-radius: 20px;
+    background-color: chartreuse;
 }
 
-@keyframes inverser {
-    0% {
-        background-color: white;
-        color: black;
-    }
-
-    50% {
-        background-color: yellow;
-        color: red;
-    }
-
-    100% {
-        background-color: white;
-        color: black;
-    }
+.btnContainer {
+    display: flex;
 }
 
-#supprimer2 {
-    margin-left: 420px;
+.btnValider {
+    margin-top: 10px;
+}
+
+.ajoute {
+    background-color: coral;
+}
+
+#btn {
+    background-color: burlywood;
 }

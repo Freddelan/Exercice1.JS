@@ -44,12 +44,7 @@ for (let i = 0; i < tableauClasse.length; i++) {
   row.setAttribute("id", "row" + i);
   row.setAttribute("class", "row");
 
-  let checkboxCell = document.createElement("td");
-  let checkbox = document.createElement("input");
-  checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("class", "checkbox");
-  checkboxCell.appendChild(checkbox);
-  row.appendChild(checkboxCell);
+  //
 
   let nomCell = document.createElement("td");
   nomCell.setAttribute("id", "nomCell" + i);
@@ -60,6 +55,13 @@ for (let i = 0; i < tableauClasse.length; i++) {
   sexeCell.setAttribute("id", "sexeCell" + i);
   sexeCell.textContent = sexeType[i];
   row.appendChild(sexeCell);
+
+  let checkboxCell = document.createElement("td");
+  let checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("class", "checkbox");
+  checkboxCell.appendChild(checkbox);
+  row.appendChild(checkboxCell);
 
   let btnSupprime = document.createElement("button");
   btnSupprime.textContent = "Supprimer";
@@ -90,6 +92,7 @@ for (let i = 0; i < tableauClasse.length; i++) {
 
 let btnSupprimerSelection = document.createElement("button");
 btnSupprimerSelection.textContent = "Supprimer la sélection";
+btnSupprimerSelection.id = "btnSupprimerSelection";
 tableauBody.parentNode.insertBefore(btnSupprimerSelection, tableauBody);
 
 btnSupprimerSelection.onclick = function () {
@@ -113,65 +116,110 @@ function ajouterLigne() {
   let inputColonne1 = document.getElementById("inputColonne1").value;
   let inputColonne2 = document.getElementById("inputColonne2").value;
 
-  let lastRow = table.lastChild;
-  console.log(lastRow);
-
-  let chaine = lastRow.id;
-  console.log(chaine);
-
-  let chaineRow = chaine.split("w");
-  console.log(chaineRow);
-
-  let idRow = parseInt(chaineRow[1]);
-  console.log(idRow);
-
-  let row = table.insertRow(-1);
-  row.setAttribute("class", "row");
-  row.setAttribute("id", "row" + (idRow + 1));
-
-  //LA
-  let nomCell = document.getElementById("nomCell" + (idRow + 1));
-  let sexeCell = document.getElementById("sexeCell" + (idRow + 1));
+  let rowCount = table.rows.length;
 
   let cell1 = row.insertCell(0);
-  cell1.setAttribute("id", "nomCell" + (idRow + 1));
+  cell1.setAttribute("id", "nomCell" + rowCount);
   cell1.textContent = inputColonne1;
 
   let cell2 = row.insertCell(1);
-  cell2.setAttribute("id", "nomCell2" + (idRow + 1));
+  cell2.setAttribute("id", "sexeCell" + rowCount);
   cell2.textContent = inputColonne2;
+
+  let checkboxCell = row.insertCell(2);
+  let checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("class", "checkbox");
+  checkboxCell.appendChild(checkbox);
 
   let btnSupprime = document.createElement("button");
   btnSupprime.textContent = "Supprimer";
-  btnSupprime.setAttribute("id", "btn");
+  btnSupprime.setAttribute("class", "btnSupprime");
   row.appendChild(btnSupprime);
 
-  tableauBody.appendChild(row);
+  let btnInverse = document.createElement("button");
+  btnInverse.textContent = "Inverser";
+  btnInverse.setAttribute("class", "btnInverse");
+  row.appendChild(btnInverse);
 
   btnSupprime.onclick = function () {
     row.remove();
   };
 
-  let btnInverse = document.createElement("button");
-  btnInverse.textContent = "Inverser";
-  btnInverse.setAttribute("id", "btn");
-  row.appendChild(btnInverse);
-
-  btnInverse.addEventListener("click", function () {
-    let sexeCell = document.getElementById("nomCell2" + (idRow + 1));
-    let nomCell = document.getElementById("nomCell" + (idRow + 1));
-
-    console.log("SexeCell ::: ", sexeCell.innerText);
-    console.log("nomCell ::: ", nomCell);
+  btnInverse.onclick = function () {
+    let sexeCell = document.getElementById("sexeCell" + rowCount);
+    let nomCell = document.getElementById("nomCell" + rowCount);
 
     let inverse = nomCell.textContent;
     nomCell.textContent = sexeCell.textContent;
     sexeCell.textContent = inverse;
-  });
+  };
 
-  let btnCheck = document.createElement("input");
-  btnCheck.type = "checkbox";
-  btnCheck.setAttribute("id", "btnCheck_");
-  btnCheck.setAttribute("class", "btnCheck_");
-  row.appendChild(btnCheck);
+  let textareaCell = row.insertCell(3);
+  textareaCell.setAttribute("colspan", "2");
+  let textarea = document.createElement("textarea");
+  textarea.setAttribute("cols", "40");
+  textarea.setAttribute("class", "inputTextarea");
+  textareaCell.appendChild(textarea);
+
+  let btnValider = document.createElement("button");
+  btnValider.textContent = "Valider";
+  btnValider.setAttribute("class", "btnValider");
+  btnValider.addEventListener("click", function () {
+    let value = textarea.value;
+    let newRow = table.insertRow(table.rows.length - 1);
+    newRow.setAttribute("class", "row");
+
+    let nomCell = newRow.insertCell(0);
+    nomCell.textContent = value;
+
+    let sexeCell = newRow.insertCell(1);
+    sexeCell.textContent = "";
+
+    let checkboxCell = newRow.insertCell(2);
+    let checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("class", "checkbox");
+    checkboxCell.appendChild(checkbox);
+
+    let btnSupprime = document.createElement("button");
+    btnSupprime.textContent = "Supprimer";
+    btnSupprime.setAttribute("class", "btnSupprime");
+    newRow.appendChild(btnSupprime);
+
+    btnSupprime.onclick = function () {
+      newRow.remove();
+    };
+
+    let btnInverse = document.createElement("button");
+    btnInverse.textContent = "Inverser";
+    btnInverse.setAttribute("class", "btnInverse");
+    newRow.appendChild(btnInverse);
+
+    btnInverse.addEventListener("click", function () {
+      let inverse = nomCell.textContent;
+      nomCell.textContent = sexeCell.textContent;
+      sexeCell.textContent = inverse;
+    });
+
+    // textarea.value = "";
+  });
+}
+
+let table = document.getElementById("maTable");
+let row = table.insertRow();
+let cell = row.insertCell();
+// let textarea = document.createElement("textarea");
+
+textarea.cols = 40;
+
+cell.appendChild(textarea);
+
+function envoyerTexte() {
+  // Récupérer la valeur de la zone de texte
+  let texte = document.getElementById("myTextarea").value;
+
+  // Placer le texte dans l'élément cible
+  let emplacement = document.getElementById("emplacementTexte");
+  emplacement.textContent = texte;
 }

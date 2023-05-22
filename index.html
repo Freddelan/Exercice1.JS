@@ -29,13 +29,16 @@
             <tbody id="tableauCDA">
             </tbody>
         </table>
-        <button id="supprimer2">Supprimer</button>
+
     </div>
     <br>
     <br>
     <input type="text" id="inputColonne1" placeholder="Colonne 1">
     <input type="text" id="inputColonne2" placeholder="Colonne 2">
-    <button onclick="ajouterLigne()">Ajouter une ligne</button>
+    <button class="ajoute" onclick="ajouterLigne()">Ajouter une ligne</button>
+    <textarea id="myTextarea"></textarea>
+    <button onclick="envoyerTexte()">Envoyer</button>
+    <p id="emplacementTexte"></p>
     <script src="script.js"></script>
 </body>
 
